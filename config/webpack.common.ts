@@ -7,8 +7,9 @@ const common: webpack.Configuration = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].bundle.js',
-    clean: true
+    filename: '[name].[contenthash].js',
+    clean: true,
+    publicPath: '/'
   },
   optimization: {
     runtimeChunk: 'single',
@@ -44,7 +45,10 @@ const common: webpack.Configuration = {
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       title: 'Reeact App',
-      template: './src/index.html'
+      template: 'src/index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.ELL': JSON.stringify('production')
     })
   ]
 };
