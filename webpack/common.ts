@@ -1,27 +1,19 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import webpack from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import 'webpack-dev-server';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const config: webpack.Configuration = {
-  mode: 'development',
+const common: webpack.Configuration = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].bundle.js',
     clean: true
-  },
-  devServer: {
-    static: './dist',
-    port: 8000,
-    hot: true
   },
   optimization: {
     runtimeChunk: 'single',
     usedExports: true
   },
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -57,4 +49,4 @@ const config: webpack.Configuration = {
   ]
 };
 
-export default config;
+export default common;
