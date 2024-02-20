@@ -8,7 +8,7 @@ const config: webpack.Configuration = {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].bundle.js',
     clean: true
   },
@@ -34,8 +34,7 @@ const config: webpack.Configuration = {
         test: /\.css$/i,
         use: [
           // Creates `style` nodes from JS strings
-          // MiniCssExtractPlugin.loader,
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           'css-loader'
         ]
