@@ -44,7 +44,7 @@ const common: webpack.Configuration = {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Reeact App',
+      title: 'React App',
       template: 'src/index.html'
     }),
     new webpack.DefinePlugin({

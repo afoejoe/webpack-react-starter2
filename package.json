@@ -12,9 +12,15 @@
   "author": "Okunola Joshua <afoejoe@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "^7.23.9",
+    "@sc-reactkit/internal": "/home/josh/projects/security-code/uikit/@sc-reactkit/internal",
+    "@sc-reactkit/preloader": "/home/josh/projects/security-code/uikit/@sc-reactkit/preloader",
+    "classnames": "^2.5.1",
     "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sc-context": "/home/josh/projects/security-code/uikit/sc-context"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",

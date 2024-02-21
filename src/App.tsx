@@ -1,12 +1,14 @@
 import React from 'react';
 import Icon from './assets/check.png';
 import './app.css';
+import { withPreloader } from '@sc-reactkit/preloader';
 
 export default function App() {
-  const env = process.env;
-  console.log({ env });
-
   console.log('Hello World');
+  console.log({
+    withPreloader
+  });
+
   return (
     <h1>
       Hello World5

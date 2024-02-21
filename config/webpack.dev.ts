@@ -13,7 +13,10 @@ const config: webpack.Configuration = merge(common, {
     port: 8000,
     hot: true
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  stats: {
+    errorDetails: true
+  }
 });
 
 export default config;
