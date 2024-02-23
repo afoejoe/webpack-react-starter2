@@ -1,56 +1,67 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import path from 'path';
-import webpack from 'webpack';
+import path from 'path'
 
-const common: webpack.Configuration = {
+import { EsbuildPlugin } from 'esbuild-loader'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+
+import type webpack from 'webpack'
+
+const common: (env: ENV) => webpack.Configuration = env => ({
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[contenthash].js',
     clean: true,
-    publicPath: '/'
+    publicPath: '/',
   },
   optimization: {
     runtimeChunk: 'single',
-    usedExports: true
+    usedExports: true,
+    minimizer: [
+      new EsbuildPlugin({
+        target: 'es2015',
+      }),
+    ],
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.([jt])sx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        loader: 'esbuild-loader',
+        options: {
+          target: 'es2015',
+        },
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
+        type: 'asset/resource',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource'
-      }
-    ]
+        type: 'asset/resource',
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       title: 'React App',
-      template: 'src/index.html'
+      template: 'src/index.html',
     }),
-    new webpack.DefinePlugin({
-      'process.env.ELL': JSON.stringify('production')
-    })
-  ]
-};
+    new EsbuildPlugin({
+      define: {
+        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV ?? 'production'),
+      },
+    }),
+  ],
+})
 
-export default common;
+export default common

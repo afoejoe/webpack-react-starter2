@@ -1,20 +1,12 @@
-import React from 'react';
-import Icon from './assets/check.png';
-import './app.css';
-import { withPreloader } from '@sc-reactkit/preloader';
+import styles from './app.module.css'
+import Icon from './assets/check.png'
 
-export default function App() {
-  console.log('Hello World');
-  console.log({
-    withPreloader
-  });
-
+export function App() {
   return (
-    <h1>
-      Hello World5
-      <span>{new Date().toDateString()}</span>
-      {/* <Icon /> */}
+    <>
+      <h1 className={styles.h1}>Hello World2</h1>
+      <span className={styles.span}>{new Date().toDateString()}</span>
       <img src={Icon} alt="h" />
-    </h1>
-  );
+    </>
+  )
 }
